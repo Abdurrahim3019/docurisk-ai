@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: docurisk_postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: docurisk
+      POSTGRES_USER: docurisk_user
+      POSTGRES_PASSWORD: docurisk_password
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - docurisk_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  docurisk_postgres_data:

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocuRisk AI — Sənəd Risk Analizi</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">
+      <div class="logo-mark">DR</div>
+      <div class="logo-text">
+        <span class="logo-title">DocuRisk<span class="accent">AI</span></span>
+        <span class="logo-subtitle">Sənəd Risk Analiz Platforması</span>
+      </div>
+    </div>
+    <nav class="topnav">
+      <button class="nav-btn active" data-view="analyze-view">Analiz</button>
+      <button class="nav-btn" data-view="history-view">Tarixçə</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ================= ANALİZ VIEW ================= -->
+  <section id="analyze-view" class="view active">
+
+    <div id="upload-card" class="card upload-card">
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="file-input" accept="application/pdf" hidden>
+        <div class="dropzone-icon">⇪</div>
+        <p class="dropzone-title">PDF müqaviləni bura sürüşdürün</p>
+        <p class="dropzone-subtitle">və ya seçmək üçün klikləyin &middot; maks. 10&nbsp;MB</p>
+        <div id="file-chip" class="file-chip hidden">
+          <span class="file-chip-icon">📄</span>
+          <span id="file-chip-name"></span>
+          <button id="file-chip-remove" type="button" title="Faylı sil">✕</button>
+        </div>
+      </div>
+
+      <button id="analyze-btn" class="btn btn-primary" disabled>Sənədi Analiz Et</button>
+      <p id="upload-error" class="error-text hidden"></p>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading-card" class="card loading-card hidden">
+      <div class="spinner"></div>
+      <p class="loading-title">Sənəd analiz edilir...</p>
+      <p class="loading-subtitle">AI müqaviləni oxuyur, riskləri və faydaları qiymətləndirir. Bu bir neçə saniyə çəkə bilər.</p>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="results hidden">
+
+      <div class="scores-grid">
+        <div class="score-card risk-card">
+          <span class="score-label">Risk Balı</span>
+          <span id="risk-score" class="score-value">--</span>
+          <span class="score-unit">/ 100</span>
+        </div>
+        <div class="score-card benefit-card">
+          <span class="score-label">Fayda Balı</span>
+          <span id="benefit-score" class="score-value">--</span>
+          <span class="score-unit">/ 100</span>
+        </div>
+        <div class="score-card level-card">
+          <span class="score-label">Risk Səviyyəsi</span>
+          <span id="risk-level" class="score-badge">--</span>
+        </div>
+      </div>
+
+      <div class="card report-card">
+        <div class="report-header">
+          <h2>Tam Analiz Hesabatı</h2>
+          <span id="report-filename" class="report-filename"></span>
+        </div>
+        <pre id="report-text" class="report-text"></pre>
+      </div>
+
+      <!-- Chat -->
+      <div class="card chat-card">
+        <h2>Sənədlə bağlı sual verin</h2>
+        <div id="chat-window" class="chat-window">
+          <div class="chat-msg chat-msg-assistant">
+            Salam! Yüklədiyiniz sənədlə bağlı istənilən sualı verə bilərsiniz.
+          </div>
+        </div>
+        <form id="chat-form" class="chat-form">
+          <input type="text" id="chat-input" placeholder="Məsələn: Bu müqavilədə ən böyük risk nədir?" autocomplete="off">
+          <button type="submit" id="chat-send" class="btn btn-secondary">Göndər</button>
+        </form>
+      </div>
+
+    </div>
+
+    <p class="disclaimer">
+      ⚖️ DocuRisk AI avtomatlaşdırılmış məlumatlandırıcı analiz təqdim edir və heç bir halda hüquqi məsləhət hesab edilmir.
+      Vacib qərarlardan əvvəl həmişə ixtisaslı hüquqşünasla məsləhətləşin.
+    </p>
+
+  </section>
+
+  <!-- ================= HISTORY VIEW ================= -->
+  <section id="history-view" class="view">
+    <div class="card">
+      <div class="history-header">
+        <h2>Əvvəlki Analizlər</h2>
+        <button id="history-refresh" class="btn btn-secondary btn-small">Yenilə</button>
+      </div>
+      <div id="history-list" class="history-list">
+        <p class="muted">Yüklənir...</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 DocuRisk AI — Sənəd Risk Analiz Platforması</span>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
